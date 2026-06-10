@@ -1,6 +1,6 @@
 import { AuthProvider } from "@/context/AuthContext";
 import "../styles/hero-vars.css";
-import Header from "@/components/header2/header";
+import Header from "@/components/layout/Header/Header";
 import Footer from "@/components/footer/footer";
 import styles from "../styles/Home.module.css";
 import { MusicProvider } from "../context/MusicContext";

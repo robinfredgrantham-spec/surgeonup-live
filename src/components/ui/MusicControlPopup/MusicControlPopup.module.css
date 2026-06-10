@@ -1,0 +1,214 @@
+/* FILE: MusicControlPopup.module.css
+   DATE: 05-Mar-26
+   ============================================================================
+   MUSIC CONTROL POPUP STYLES
+   Surge-on Up — surgeonup.com
+
+   Location: src/components/ui/MusicControlPopup/MusicControlPopup.module.css
+
+   COLOUR PALETTE:
+   - Dark green:  var(--col-dark-highlight) (headers, track name, controls)
+   - Brand blue:  var(--col-main) (volume value, slider)
+   - Light bg:    #f8f9fa / #e9ecef
+
+   LAYOUT: Small centred modal — track info | volume slider | 3 buttons | close
+   ============================================================================ */
+
+/* ========== MODAL CONTENT OVERRIDES ========== */
+/* Bootstrap's .modal-content is not a CSS module class — use a global descendant selector */
+
+.musicModal .modal-content {
+  border-radius: 15px; /* Rounded corners on the modal box */
+  border: 2px solid var(--col-dark-highlight); /* Dark green border — brand accent */
+  font-family: 'Poppins', sans-serif;
+}
+
+/* ========== MODAL HEADER ========== */
+
+.modalHeader {
+  background: linear-gradient(135deg, var(--col-dark-highlight), var(--col-main)); /* Green-to-blue diagonal gradient */
+  color: var(--col-background);
+  border-bottom: none; /* Remove Bootstrap's default header border */
+  padding: 15px 20px;
+}
+
+.modalTitle {
+  color: var(--col-background);
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.modalHeader .btn-close {
+  filter: brightness(0) invert(1); /* Invert Bootstrap's close button to white — visible on dark header */
+}
+
+/* ========== MODAL BODY ========== */
+
+.modalBody {
+  padding: 25px 20px;
+  background: #f8f9fa; /* Light grey body background */
+}
+
+/* ========== TRACK INFO ========== */
+
+.trackInfo {
+  text-align: center;
+  margin-bottom: 25px;
+  padding: 15px;
+  background: var(--col-background);
+  border-radius: 10px;
+  border: 2px solid #e9ecef;
+}
+
+.trackIcon {
+  font-size: 40px;
+  margin-bottom: 10px;
+  animation: pulse 2s infinite; /* Pulsing scale animation — indicates active playback */
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.1); } /* Gentle grow at midpoint */
+}
+
+.trackName {
+  color: var(--col-dark-highlight); /* Dark green — matches header */
+  font-weight: 700;
+  font-size: 20px;
+}
+
+/* ========== VOLUME CONTROL ========== */
+
+.volumeControl {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 25px;
+  padding: 15px;
+  background: var(--col-background);
+  border-radius: 10px;
+  border: 2px solid #e9ecef;
+}
+
+.volumeIcon {
+  font-size: 24px;
+  flex-shrink: 0; /* Prevent icon shrinking on narrow screens */
+}
+
+.volumeSlider {
+  flex: 1; /* Fill available space between icon and percentage label */
+  height: 6px;
+  border-radius: 5px;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background: linear-gradient(to right, var(--col-dark-highlight) 0%, var(--col-main) 100%); /* Green-to-blue track */
+}
+
+/* Custom thumb — WebKit (Chrome, Safari) */
+.volumeSlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%; /* Circular thumb */
+  background: var(--col-dark-highlight);
+  cursor: pointer;
+  border: 2px solid var(--col-background);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Custom thumb — Firefox */
+.volumeSlider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--col-dark-highlight);
+  cursor: pointer;
+  border: 2px solid var(--col-background);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.volumeValue {
+  font-weight: 700;
+  color: var(--col-dark-highlight);
+  min-width: 45px; /* Prevents layout shift as number changes (1%–100%) */
+  text-align: right;
+  font-size: 14px;
+}
+
+/* ========== PLAYBACK CONTROLS ========== */
+
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+/* Previous and Next buttons */
+.controlBtn, .playBtn {
+  border-radius: 50%; /* Circular buttons */
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  border: 2px solid var(--col-dark-highlight);
+  transition: all 0.3s ease;
+}
+
+/* Play/Pause button — slightly larger than prev/next */
+.playBtn {
+  width: 60px;
+  height: 60px;
+  font-size: 24px;
+  background: linear-gradient(135deg, var(--col-dark-highlight), var(--col-main));
+  border: none;
+}
+
+.controlBtn:hover, .playBtn:hover {
+  transform: scale(1.1); /* Grow on hover */
+  box-shadow: 0 5px 15px rgba(0, 102, 51, 0.3); /* Green glow shadow */
+}
+
+.controlBtn {
+  background: var(--col-background);
+  color: var(--col-dark-highlight);
+}
+
+/* ========== CLOSE BUTTON ========== */
+
+.closeButtonContainer {
+  text-align: center;
+}
+
+.closeBtn {
+  width: 100%; /* Full width of modal body */
+  padding: 10px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.closeBtn:hover {
+  transform: translateY(-2px); /* Lift effect */
+  box-shadow: 0 3px 10px rgba(220, 53, 69, 0.3); /* Red glow for danger button */
+}
+
+/* ========== RESPONSIVE: SMALL MOBILE (≤576px) ========== */
+
+/* — RESPONSIVE COMMENTED OUT —
+@media (max-width: 576px) {
+  .modalBody { padding: 20px 15px; }
+  .trackIcon { font-size: 35px; }
+  .trackName { font-size: 16px; }
+  .volumeControl { padding: 12px; }
+  .volumeIcon { font-size: 20px; }
+  .controlBtn { width: 45px; height: 45px; font-size: 18px; }
+  .playBtn    { width: 55px; height: 55px; font-size: 22px; }
+  .controls   { gap: 12px; }
+}
+— END RESPONSIVE — */
