@@ -1,4 +1,5 @@
 import { AuthProvider } from "@/context/AuthContext";
+import "../styles/hero-vars.css";
 import Header from "@/components/header2/header";
 import Footer from "@/components/footer/footer";
 import styles from "../styles/Home.module.css";

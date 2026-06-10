@@ -1,0 +1,19 @@
+/* Brand colours + hero animation timings for the new home.
+   Loaded globally via _app.js. Only defines CSS variables — affects nothing
+   unless a component references these names (only the new home does). */
+:root {
+  --col-background            : white;
+  --col-main                 : #3366FF;
+  --col-dark-highlight       : #8224c6;
+  --col-light-highlight      : #33FFCC;
+  --col-very-light-background : #CCFFFF;
+  --rti-1 : 5s;
+  --rti-2 : 8s;
+  --rti-3 : 2s;
+  --sln   : 4.5s;
+  --rti-4 : calc(3 * var(--sln));
+  --rti-5 : calc(3 * var(--sln));
+  --rti-6 : calc(5 * var(--sln));
+  --rti-7 : calc(2 * var(--sln));
+  --rti-8 : 3s;
+}
