@@ -14,7 +14,7 @@
 "use client";
 
 /* ÃÂ¢ÃÂÃÂ React and useState hook ÃÂ¢ÃÂÃÂ */
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 /* ÃÂ¢ÃÂÃÂ Next.js optimised image component ÃÂ¢ÃÂÃÂ */
 import Image from "next/image";
@@ -52,6 +52,26 @@ export default function Header()
 
     /* ÃÂ¢ÃÂÃÂ Router instance for current pathname ÃÂ¢ÃÂÃÂ */
     const router = useRouter();
+
+    /* — auto-shrink the header to fit the screen width (keeps proportions) — */
+    const wrapRef = useRef(null);
+    const innerRef = useRef(null);
+    useEffect(() => {
+      const fit = () => {
+        const wrap = wrapRef.current, inner = innerRef.current;
+        if (!wrap || !inner) return;
+        inner.style.zoom = "1";
+        const natural = inner.scrollWidth;
+        const avail = wrap.clientWidth - 40;
+        const k = Math.min(1, avail / natural);
+        inner.style.zoom = String(k);
+      };
+      fit();
+      window.addEventListener("resize", fit);
+      const t1 = setTimeout(fit, 300);
+      const t2 = setTimeout(fit, 1000);
+      return () => { window.removeEventListener("resize", fit); clearTimeout(t1); clearTimeout(t2); };
+    }, []);
 
     // ========== EVENT HANDLERS ==========
 
@@ -100,10 +120,10 @@ export default function Header()
     return (
         <>
             {/* ÃÂ¢ÃÂÃÂ Outer header wrapper: sticky, white background, padding ÃÂ¢ÃÂÃÂ */}
-            <div className={styles.headerWrapper}>
+            <div ref={wrapRef} className={styles.headerWrapper}>
 
                 {/* ÃÂ¢ÃÂÃÂ Three-column flex container ÃÂ¢ÃÂÃÂ */}
-                <div className={styles.headerContainer}>
+                <div ref={innerRef} className={styles.headerContainer}>
 
                     {/* ========== LEFT SECTION: LOGO ========== */}
 
