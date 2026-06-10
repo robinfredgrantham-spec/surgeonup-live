@@ -1,0 +1,62 @@
+/* FILE: Teaser.module.css
+   DATE: 09-Jun-26
+   Animated TEASER screen (screen 2 of home). Pixel-exact PSD slices.
+   Fills the full height below the fixed header; never distorted; plays on scroll-in.
+   ============================================================================ */
+
+.section {
+  width: 100%;
+  height: 100vh;
+  box-sizing: border-box;
+  background-color: #3366FF;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  overflow: hidden;
+  padding-top: 130px; /* set live in JS to the real header height */
+}
+
+.holder { position: relative; margin: 0 auto; }
+
+.stage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1250px;
+  height: 600px;
+  transform-origin: top left;
+}
+
+.stage img { position: absolute; display: block; }
+
+@keyframes up   { from { opacity: 0; transform: translateY(60px);  } to { opacity: 1; transform: translateY(0); } }
+@keyframes down { from { opacity: 0; transform: translateY(-60px); } to { opacity: 1; transform: translateY(0); } }
+
+.htext    { left: 10px;     top: 3px;      width: 583px;    }
+.toparrow { left: 597px;    top: 3px;      width: 60px;     opacity: 0; }
+.hpanel   { left: 26px;     top: 52.5px;   width: 1203.5px; opacity: 0; }
+.barL     { left: 34px;     top: 166.25px; width: 524.5px;  opacity: 0; }
+.barR     { left: 686px;    top: 166.25px; width: 534.3px;  opacity: 0; }
+
+.a1 { left: 138.25px;  top: 215.75px; width: 55px;    opacity: 0; }
+.a2 { left: 442.5px;   top: 215px;    width: 55.25px; opacity: 0; }
+.a3 { left: 754.75px;  top: 214.25px; width: 55.5px;  opacity: 0; }
+.a4 { left: 1065.75px; top: 217.5px;  width: 55.25px; opacity: 0; }
+
+.p1 { left: 21.75px;   top: 269.5px;  width: 287px;    opacity: 0; }
+.p2 { left: 331px;     top: 269.5px;  width: 286px;    opacity: 0; }
+.p3 { left: 635.25px;  top: 268px;    width: 291.25px; opacity: 0; }
+.p4 { left: 942.75px;  top: 268px;    width: 290px;    opacity: 0; }
+
+.playing .toparrow { animation: down 2s ease-out 2s  forwards; }
+.playing .hpanel   { animation: up   2s ease-out 2s  forwards; }
+.playing .barL,
+.playing .barR     { animation: up   2s ease-out 6s  forwards; }
+.playing .a1 { animation: down 2s ease-out 10s forwards; }
+.playing .p1 { animation: up   2s ease-out 10s forwards; }
+.playing .a2 { animation: down 2s ease-out 15s forwards; }
+.playing .p2 { animation: up   2s ease-out 15s forwards; }
+.playing .a3 { animation: down 2s ease-out 20s forwards; }
+.playing .p3 { animation: up   2s ease-out 20s forwards; }
+.playing .a4 { animation: down 2s ease-out 25s forwards; }
+.playing .p4 { animation: up   2s ease-out 25s forwards; }

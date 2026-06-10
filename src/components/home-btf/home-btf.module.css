@@ -1,0 +1,30 @@
+/*
+============================================================
+  FILE    : home-btf.module.css
+  VERSION : 24 — animations gated on .animated class (CTA-triggered)
+  DATE    : 20-Apr-26
+============================================================
+*/
+
+/* — PINK PLACEHOLDER — */
+.pinkSection { position: absolute; top: 1028px; left: 0px; right: 0px; height: 1049px; background-color: var(--col-main); border-radius: 40px 40px 0 0; z-index: 10; }
+
+/* — CYAN PLACEHOLDERS x4 — */
+.cyanSection, .cyanSection2, .cyanSection3, .cyanSection4 { position: absolute; top: 1430px; width: 620px; height: 550px; background-color: var(--col-light-highlight); border-radius: 30px; z-index: 20; }
+.cyanSection  { left: 72px; }
+.cyanSection2 { left: calc(692px + (100% - 2624px) / 3); }
+.cyanSection3 { left: calc(1312px + (100% - 2624px) * 2 / 3); }
+.cyanSection4 { right: 72px; }
+
+/* — WHITE PLACEHOLDERS x4 — */
+.whiteSection, .whiteSection2, .whiteSection3, .whiteSection4 { position: absolute; top: 1100px; width: 620px; height: calc(330px - (100vw - 2624px) / 3); background-color: var(--col-background); border-radius: 30px; z-index: 20; }
+.whiteSection  { left: 72px; }
+.whiteSection2 { left: calc(692px + (100% - 2624px) / 3); }
+.whiteSection3 { left: calc(1312px + (100% - 2624px) * 2 / 3); }
+.whiteSection4 { right: 72px; }
+
+/* — BTF FADE-IN ANIMATION — */
+@keyframes btfFadeIn { from { opacity: 0; transform: translateY(100px); } to { opacity: 1; transform: translateY(0); } }
+
+/* — Default hidden — */
+.whiteSection, .cyanSection, .whiteSection2, .cyanSection2, .whiteSection3, .cyanSection3, .whiteSection4, .cyanSection4 { opacity: 0; }
