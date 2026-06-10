@@ -4,7 +4,7 @@
    (public/teaser/*). Fills the height below the fixed header (height-priority,
    never distorted, never overflowing width), centred on brand blue, and plays
    its sequence the first time it scrolls into view.
-   v3: header measured via stickyHeader (was: tallest fixed element, which
+   v3: header measured via headerWrapper (was: tallest fixed element, which
        could grab overlays); window-resize instead of a self-triggering
        ResizeObserver on the section (fixes up/down jump loop).
    ============================================================================ */
@@ -26,7 +26,7 @@ export default function Teaser() {
 
   /* measure the real fixed header only (ignore any overlays) */
   const headerHeight = () => {
-    const h = document.querySelector('[class*="stickyHeader"]');
+    const h = document.querySelector('[class*="headerWrapper"]');
     return h ? h.getBoundingClientRect().height : 130;
   };
 
