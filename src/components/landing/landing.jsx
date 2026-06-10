@@ -31,14 +31,13 @@ export default function Landing({ scrollToTeaser })
     const fit = () => {
       const outer = fitRef.current, stage = stageRef.current;
       if (!outer || !stage) return;
-      stage.style.width = DESIGN_W + "px";
+      stage.style.zoom = "1";
       const k = outer.clientWidth / DESIGN_W;
-      stage.style.transform = "scale(" + k + ")";
-      outer.style.height = (stage.offsetHeight * k) + "px";
+      stage.style.zoom = String(k);
     };
     fit();
     const ro = new ResizeObserver(fit);
-    if (stageRef.current) ro.observe(stageRef.current);
+    if (fitRef.current) ro.observe(fitRef.current);
     window.addEventListener("resize", fit);
     const t1 = setTimeout(fit, 300);
     const t2 = setTimeout(fit, 1200);
