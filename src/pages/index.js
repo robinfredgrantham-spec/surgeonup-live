@@ -26,10 +26,12 @@ export default function Home() {
         <link rel="canonical" href="https://surgeonup.com/" />
       </Head>
 
-      <Landing scrollToTeaser={scrollToTeaser} />
+      <div style={{ width: "100vw", position: "relative", left: "50%", right: "50%", marginLeft: "-50vw", marginRight: "-50vw" }}>
+        <Landing scrollToTeaser={scrollToTeaser} />
 
-      <div ref={teaserRef}>
-        <Teaser />
+        <div ref={teaserRef}>
+          <Teaser />
+        </div>
       </div>
     </>
   );
