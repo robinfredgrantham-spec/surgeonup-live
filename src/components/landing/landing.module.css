@@ -35,6 +35,15 @@
 
     margin : 0;
 
+    transform-origin : top left;
+
+}
+
+.heroFit
+{
+    width    : 100%;
+
+    overflow : hidden;
 }
 
 /*  Outer blue wrapper  full width  */

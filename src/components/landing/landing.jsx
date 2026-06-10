@@ -3,7 +3,7 @@
    CHANGE: hero headline verb LOCK->OWN on TOP SPOT (both A/B render points)
    PREV (29-May-26): button now calls the scrollToTeaser() prop (was an inline DOM lookup + scroll)
    ============================================================================ */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 /*  Scoped CSS module  */
 import styles from "./landing.module.css";
@@ -16,10 +16,33 @@ export default function Landing({ scrollToTeaser })
   // — A/B VARIANT — TopSpot boolean (true=Lock Your Top Spot, false=10 Clients)
   const [TopSpot, setTopSpot] = useState(null);
 
+  const fitRef = useRef(null);
+  const stageRef = useRef(null);
+
   useEffect(() => {
     // pick A/B variant immediately on load (live site has no consent popup)
     var n = Math.floor(Math.random() * 100) + 1;
     setTopSpot(n <= 50);
+  }, []);
+
+  /* — shrink the whole hero to fit the screen width (keeps tuned proportions) — */
+  useEffect(() => {
+    const DESIGN_W = 2560;
+    const fit = () => {
+      const outer = fitRef.current, stage = stageRef.current;
+      if (!outer || !stage) return;
+      stage.style.width = DESIGN_W + "px";
+      const k = outer.clientWidth / DESIGN_W;
+      stage.style.transform = "scale(" + k + ")";
+      outer.style.height = (stage.offsetHeight * k) + "px";
+    };
+    fit();
+    const ro = new ResizeObserver(fit);
+    if (stageRef.current) ro.observe(stageRef.current);
+    window.addEventListener("resize", fit);
+    const t1 = setTimeout(fit, 300);
+    const t2 = setTimeout(fit, 1200);
+    return () => { ro.disconnect(); window.removeEventListener("resize", fit); clearTimeout(t1); clearTimeout(t2); };
   }, []);
 
     /*  Tracks whether the CTA button has been clicked; triggers BTF fade-up sequence  */
@@ -30,7 +53,8 @@ export default function Landing({ scrollToTeaser })
     // ========== RENDER ==========
 
     return (
-        <div className={styles.landingWrapper}>
+      <div ref={fitRef} className={styles.heroFit}>
+        <div ref={stageRef} className={styles.landingWrapper}>
 
             {/*  Outer blue wrapper  always visible  */}
             <div className={styles.mainLandingBody2}>
@@ -108,5 +132,6 @@ export default function Landing({ scrollToTeaser })
         <HomeBtf animate={btfFired} />
 
         </div>
+      </div>
     );
 }
