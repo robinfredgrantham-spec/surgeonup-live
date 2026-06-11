@@ -46,7 +46,7 @@
 .mainLandingBody2
 {
     position         : relative;
-    margin-top           : 20px;
+    margin-top           : 0px;
     text-align       : center;
 
     background-color : var(--col-main);
